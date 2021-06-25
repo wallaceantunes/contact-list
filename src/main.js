@@ -2,6 +2,9 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import 'materialize-css';
+import 'materialize-css/dist/css/materialize.css';
+import './assets/scss/global.scss';
 
 Vue.config.productionTip = false;
 
