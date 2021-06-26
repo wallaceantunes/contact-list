@@ -1,10 +1,18 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col s12">
+  <section>
+    <article class="row">
+      <div class="col s6">
         <h5>Contatos</h5>
       </div>
-    </div>
+      <div class="col s6 text-right">
+        <button
+          class="waves-effect waves-light btn green darken-1 btn-add"
+          @click="add"
+        >
+          Novo Registro
+        </button>
+      </div>
+    </article>
     <table class="striped responsive-table highlight">
       <thead>
         <tr>
@@ -12,31 +20,36 @@
           <th>Telefone</th>
           <th class="text-right">
             Ações
-            <a class="waves-effect waves-light btn green darken-1" @click="add">Novo Registro</a>
           </th>
         </tr>
       </thead>
-
       <tbody>
-        <tr v-for="item in items" :key="item.id">
+        <tr
+          v-for="(item, index) in contacts"
+          :key="item.id"
+          :class="item.phone.startsWith('(11)') ? 'table-blue' : '' "
+        >
           <td>{{item.name}}</td>
-          <td>{{item.phone}}</td>
+          <td>
+              {{item.phone}}
+            </td>
           <td class="text-right">
-            <a class="waves-effect waves-light btn yellow darken-2">
+            <button class="waves-effect waves-light btn yellow darken-2">
               <i class="material-icons" @click="edit(item)">edit</i>
-            </a>
-            <a class="waves-effect waves-light btn red darken-1">
-              <i class="material-icons" @click="remove(item.id)">delete</i>
-            </a>
+            </button>
+            <button class="waves-effect waves-light btn red darken-1">
+              <i class="material-icons" @click="remove(index)">delete</i>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
     <ModalCreate :openModal="openModalCreate" @closeModal="closeModal" :edit="data"/>
-  </div>
+  </section>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ModalCreate from './Modal.vue';
 
 export default {
@@ -47,19 +60,10 @@ export default {
     return {
       openModalCreate: false,
       data: null,
-      items: [
-        {
-          id: 1,
-          name: 'Wallace Antunes',
-          phone: '(12) 9846-8521',
-        },
-        {
-          id: 2,
-          name: 'Andrei Santos',
-          phone: '(11) 9645-8741',
-        },
-      ],
     };
+  },
+  computed: {
+    ...mapState(['contacts']),
   },
   methods: {
     add() {
@@ -68,6 +72,9 @@ export default {
     edit(item) {
       this.openModalCreate = true;
       this.data = item;
+    },
+    remove(index) {
+      this.$store.dispatch('removeContact', index);
     },
     closeModal() {
       this.openModalCreate = false;
