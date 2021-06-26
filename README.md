@@ -1,24 +1,21 @@
-# desafio-port-louis
+# Contact List
+  
+### Wallace Antunes
+  
+Crud de contatos desenvolvido em vue.
+  
+## Observações
+- Tags semanticas utilizadas com base na doc: https://developer.mozilla.org
+  
+## Install
+Instalar pacotes
+`yarn install`
 
-## Project setup
-```
-yarn install
-```
+## Run App
+Rodar aplicação
+`yarn serve`
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Build App
+Buildar aplicação
+`yarn build`
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
