@@ -36,7 +36,7 @@
       </div>
       <footer class="modal-footer">
         <button
-          class="modal-close waves-effect waves-green btn-flat"
+          class="modal-close btn-flat"
           type="button"
           @click="closeModal"
         >
@@ -53,8 +53,8 @@
   </aside>
 </template>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
-import M from 'materialize-css';
 
 export default {
   props: {
